@@ -25,11 +25,13 @@ export class HomeComponent implements OnInit {
       jmeno: this.jmeno,
       heslo: this.heslo
     }
-    this.http.post(this.url, body, {observe: 'response'}).subscribe((data) => {
-      console.log(data);
-      this.router.navigate(['/users']);
-
-
-    });
+    if (this.heslo === this.heslo) {
+      this.http.post(this.url, body, {observe: 'response'}).subscribe((data: any) => {
+        console.log(data.body);
+        this.router.navigate(['/login']);
+      });
+    } else {
+      console.log('error');
+    }
   }
 }
